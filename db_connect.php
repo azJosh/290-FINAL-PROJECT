@@ -1,4 +1,7 @@
 <?php
-include_once 'psl-config.php';   // As functions.php is not included
-$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
+//connect to database
+$mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
+if($mysqli->connect_error){
+    die('Connection Error: ' . $mysqli->connect_erno . ', ' . $mysqli->connect_error);
+}
 ?>
