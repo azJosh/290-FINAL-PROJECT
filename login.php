@@ -1,48 +1,38 @@
 <?php
+ob_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require('functions.php');
 
-// Start the session
+
 session_start();
-/* 
-if (login_check($mysqli) == true) {
-    $logged = 'in';
-} else {
-    $logged = 'out';
-}*/
+
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Secure Login: Log In</title>
+        <title>Cloud Note</title>
         
     </head>
     <body>
+        <h1>Cloud Note</h1>
         <?php
-        if (isset($_GET['error'])) {
-            echo '<p class="error">Error Logging In!</p>';
+        if (isset($_POST['logout'])) {
+            session_destroy();
+            echo 'Thank you for using Cloud Note. You have successfully logged out.';
         }
         ?> 
         <form action="LoginProcess.php" method="post" name="login_form">                      
-            Username: <input type="text" name="username" />
+            Username: <input type="text" name="username" /><br><br>
             Password: <input type="password" 
                              name="password" 
-                             id="password"/>
-            <input type='submit' value='submit'></input> 
+                             id="password"/><br><br>
+            <input type='submit' value='Sign In'></input> 
                     
         </form>
  
-<?php /*
-        if (login_check($mysqli) == true) {
-                        echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['username']) . '.</p>';
- 
-            echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p>';
-        } else {
-                        echo '<p>Currently logged ' . $logged . '.</p>';
-                        echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
-                } */
-?>      
+    
+<p><a href="registration.php">Create a Cloud Note account</a>.</p>  
     </body>
 </html>

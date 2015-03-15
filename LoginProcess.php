@@ -6,14 +6,14 @@ session_start();
 
 $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
 if($mysqli->connect_error){
-    echo "Failed to connect to MySQL: (".$mysqli->connect_errno.
+    echo "Failed to connect to Database: (".$mysqli->connect_errno.
     ") ".$mysqli->connect_error;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Lookup Book</title>
+    <title>Logging in</title>
 </head>
 <body>
 

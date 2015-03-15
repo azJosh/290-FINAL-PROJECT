@@ -12,7 +12,8 @@ session_start();
         <h1>Book Search</h1>
 <?php
 $myName = $_SESSION['username'];
-echo "Welcome " . $myName . " .";
+echo "Welcome " . $myName . " .<br><br>";
+echo "click <a href='welcome.php'>here</a> to continue.";
 ?>
     
     </body>

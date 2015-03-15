@@ -1,59 +1,61 @@
 <?php
-include_once 'includes/register.inc.php';
-include_once 'includes/functions.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require('functions.php');
+session_start();
+
+
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Secure Login: Registration Form</title>
-        <script type="text/JavaScript" src="js/sha512.js"></script> 
-        <script type="text/JavaScript" src="js/forms.js"></script>
-        <link rel="stylesheet" href="styles/main.css" />
-    </head>
-    <body>
-        <!-- Registration form to be output if the POST variables are not
-        set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Lookup Book</title>
+</head>
+<body>
+    <h1>Create a Cloud Note account</h1>
+        
         <?php
-        if (!empty($error_msg)) {
-            echo $error_msg;
-        }
-        ?>
-        <ul>
-            <li>Usernames may contain only digits, upper and lower case letters and underscores</li>
-            <li>Emails must have a valid email format</li>
-            <li>Passwords must be at least 6 characters long</li>
-            <li>Passwords must contain
-                <ul>
-                    <li>At least one uppercase letter (A..Z)</li>
-                    <li>At least one lower case letter (a..z)</li>
-                    <li>At least one number (0..9)</li>
-                </ul>
-            </li>
-            <li>Your password and confirmation must match exactly</li>
-        </ul>
-        <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" 
+
+        if (isset($_POST['newusername'])){
+            if(usernameCheck($_POST['newusername'])){
+                echo "Username is already taken. Please try again using a different username.";
+                ?><br><br><form action="registration.php" 
                 method="post" 
                 name="registration_form">
-            Username: <input type='text' 
-                name='username' 
-                id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
-            Password: <input type="password"
+            Enter a Username: <input type='text' 
+                name='newusername' 
+                id='newusername' required /><br><br>
+            
+            Enter a Password: <input type="password"
                              name="password" 
-                             id="password"/><br>
-            Confirm password: <input type="password" 
-                                     name="confirmpwd" 
-                                     id="confirmpwd" /><br>
-            <input type="button" 
-                   value="Register" 
-                   onclick="return regformhash(this.form,
-                                   this.form.username,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.confirmpwd);" /> 
+                             id="password" required/><br><br>
+            <input type="submit" value="Sign up"/> 
+            </form>
+            <p>Return to the <a href="login.php">login page</a>.</p>
+            <?php
+            } else{
+                addUser($_POST['newusername'], $_POST['password']);
+                echo "Thank you for signing up for Cloud Note. <a href='login.php'>Login in</a> to get started!";
+            }
+        } else{
+        
+        
+        ?><form action="registration.php" 
+                method="post" 
+                name="registration_form">
+            Enter a Username: <input type='text' 
+                name='newusername' 
+                id='newusername' required /><br><br>
+            
+            Enter a Password: <input type="password"
+                             name="password" 
+                             id="password" required/><br><br>
+            <input type="submit" value="Sign up"/> 
         </form>
-        <p>Return to the <a href="index.php">login page</a>.</p>
+        <p>Return to the <a href="login.php">login page</a>.</p>
+        <?php
+        }
+        ?>
     </body>
 </html>
