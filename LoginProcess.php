@@ -34,7 +34,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     } else{
 
         if (login($username, $password, $mysqli) == true) {
-            header('Location: example.php');
+            header('Location: mynotes.php');
             //header('Location: ../protected_page.php');
          }else {
            echo "Username and/or password were not found. Please check your username and password and try again. click <a href='login.php'>here</a> to return to the log in screen.";

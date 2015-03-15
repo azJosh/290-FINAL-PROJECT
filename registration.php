@@ -24,11 +24,11 @@ session_start();
                 method="post" 
                 name="registration_form">
             Enter a Username: <input type='text' 
-                name='newusername' 
+                name='newusername' maxlength="20"
                 id='newusername' required /><br><br>
             
             Enter a Password: <input type="password"
-                             name="password" 
+                             name="password" maxlength="20"
                              id="password" required/><br><br>
             <input type="submit" value="Sign up"/> 
             </form>
@@ -45,11 +45,11 @@ session_start();
                 method="post" 
                 name="registration_form">
             Enter a Username: <input type='text' 
-                name='newusername' 
+                name='newusername' maxlength="20"
                 id='newusername' required /><br><br>
             
             Enter a Password: <input type="password"
-                             name="password" 
+                             name="password" maxlength="20"
                              id="password" required/><br><br>
             <input type="submit" value="Sign up"/> 
         </form>

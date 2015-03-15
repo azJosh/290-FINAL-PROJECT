@@ -21,39 +21,30 @@ if (isset($_SESSION['username'])) {
             <input type="submit" value="Log Out"></input> 
                     
         </form>';
+        ?>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Cloud Note: Add New Note</title>
+	</head>
+<body>
+	<h1>Create a New Note</h1>
+	 <form action='NoteProcess.php' method="POST" id="noteform">
+            Note Title: <input type='text' name='title' style="width: 650px" required></input>
+            <br><br>Note:<br><textarea rows="8" cols="100" name="note" form="noteform"></textarea><br><br>
+            Note Files: <input type="file" name="file" multiple></input><br><br>
+            <input type="radio" name="private" value="private" checked>Keep note private<br>
+			<input type="radio" name="private" value="public">Make note public<br>
+            <input type='hidden' name='addNote' value='TRUE'></input>
+            <br><input type='submit' value='Save Note'></input>
+    </form><br><br>
+    <?php
+
+
 
     } else{
         echo 'You need to be logged in to access this page. click <a href="login.php">here</a> to log in.';
 	}
 
-/*
-if (isset($_SESSION['username'])){
-        $username = $_SESSION['username'];
-        if(!($stmt=$mysqli->prepare("SELECT username FROM members WHERE username=?"))){
-            echo "Prepared Statement ERROR. " . $mysqli->errno . " . " . $stmt->error;
-        }
 
-        if(!($stmt->bind_param("s", $username))){
-            echo "bind_param ERROR. " . $mysqli->errno . " . " . $mysqli->error;
-        }
-
-        if(!($stmt->execute())){
-            echo "execute() ERROR. " . $stmt->errno . " . " . $mysqli->error;
-        }
-
-        $stmt->bind_result($db_username);
-
-        $stmt->fetch();
-
-        $stmt->close();
-
-
-        if(!(empty($db_username)) && $db_username == $username){
-            echo "Hello welcome";
-        } else{
-            echo 'You need to be logged in to access this page.';
-		}
-} else {
-        echo 'You need to be logged in to access this page.';
-}*/
 ?>
