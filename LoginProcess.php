@@ -8,17 +8,8 @@ $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQ
 if($mysqli->connect_error){
     echo "Failed to connect to Database: (".$mysqli->connect_errno.
     ") ".$mysqli->connect_error;
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Logging in</title>
-</head>
-<body>
-
-<?php
 }
+
 /*
 if (array_key_exists('username', $_POST)) {
         $username = $_POST['username'];
@@ -45,5 +36,3 @@ if (isset($_POST['username'], $_POST['password'])) {
 }
 
 ?>
- </body>
-</html>

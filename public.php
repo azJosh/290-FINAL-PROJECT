@@ -10,44 +10,52 @@ if($mysqli->connect_error){
 }
 
 if (isset($_SESSION['username'])) {
-  $username = $_SESSION['username'];
+    $username = $_SESSION['username'];
     $userpic = $_SESSION['pic'];
 }
 
  if(login_check($mysqli)){
-      echo '<img src="' . $userpic . '"alt="beaver" height="40">     ';
+        echo '<img src="' . $userpic . '"alt="beaver" height="40">     ';
         echo $username . "'s Cloud Notes";
         echo "      ";
         echo '<a href="http://web.engr.oregonstate.edu/~peeplesj/Final_Project/login.php?logout=true">(Log Out)</a>';
-        
-        $myNotes = getNotes($_SESSION['username']);
+    
+        $myNotes = getPublicNotes($_SESSION['username']);
         ?>
 <html>
 	<head>
 	    <meta charset="UTF-8">
-	    <title>Cloud Note: My Notes</title>
-	     <nav id="nav-wrap" class="cf">
+	    <title>Cloud Note: Public Notes</title>
+         <nav id="nav-wrap" class="cf">
             <ul id="menu">
                 <li><a href="mynotes.php">My Cloud Notes</a>
                 <li><a href="public.php">Public Cloud Notes</a></li>
-                <li><a href="welcome.php">Create a New Cloud Note</a></li>               
+                <li><a href="welcome.php">Create a New Cloud Note</a></li>             
             </ul> <!-- end #menu -->
          </nav>
 	</head>
 <body>
 	<?php
 	echo '<div>';
+    echo "<h2>Public Cloud Notes:</h2>";
+    echo '<p>Explore Cloud Notes from all of our users. <p>';
     
-    $noteID = $_POST['view'];
-    
-   	$singleNote =  getSingleNote($noteID);
-   	
-   	foreach ($singleNote as $key => $value){
-   	echo "<h2>" . $value['title'] . "</h2><br>,<br>";
-   	echo $value['note'] . "<br><br>";
-   	//echo $value['file'] . "<br><br>";
-   	echo "Note Date: " . $value['date'] . "<br><br>";
-   }
+             
+    echo "<div><table border='1' cellpadding='5'>";
+    echo "<tr><th>Time Stamp</th><th>Title</th><th>View</th><th>Privacy</th>";
+
+    foreach ($myNotes as $key => $value){
+
+        echo '<tr><td>' . $value['date'] . '</td><td>' . $value['title'] . '</td><td>';
+
+        echo
+        '<form action="singleNote.php" method="POST">' .
+        '<input type="hidden" name="view" value="' . $value['id'] . '">' .
+        '<input type="submit" value="View">' . '</form>' . "</td><td>" . $value['private'];
+    }
+        
+    echo '</td></tr>';
+    echo '</table></div>';
   
 
     } else{
@@ -56,5 +64,3 @@ if (isset($_SESSION['username'])) {
 
 
 ?>
- </body>
-</html>

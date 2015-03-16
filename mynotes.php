@@ -10,37 +10,29 @@ if($mysqli->connect_error){
 }
 
 if (isset($_SESSION['username'])) {
-	$username = $_SESSION['username'];
+    $username = $_SESSION['username'];
+    $userpic = $_SESSION['pic'];
 }
 
  if(login_check($mysqli)){
-    	echo "Welcome " . $username . "<br><br>";
-    	echo 
-    	'<form action="mynotes.php" method="post" name="viewNotes">                      
-            <input type="hidden" name="viewNotes" />
-            <input type="submit" value="My Notes"></input> 
-                    
-        </form>';
-
-        echo 
-    	'<form action="mynotes.php" method="post" name="logout">                      
-            <input type="hidden" name="viewPublic" />
-            <input type="submit" value="Public Notes"></input> 
-                    
-        </form>';
-
-        echo 
-    	'<form action="login.php" method="post" name="logout">                      
-            <input type="hidden" name="logout" />
-            <input type="submit" value="Log Out"></input> 
-                    
-        </form>';
+        echo '<img src="' . $userpic . '"alt="beaver" height="40">     ';
+        echo $username . "'s Cloud Notes";
+        echo "      ";
+        echo '<a href="http://web.engr.oregonstate.edu/~peeplesj/Final_Project/login.php?logout=true">(Log Out)</a>';
+    
         $myNotes = getNotes($_SESSION['username']);
         ?>
 <html>
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cloud Note: My Notes</title>
+         <nav id="nav-wrap" class="cf">
+            <ul id="menu">
+                <li><a href="mynotes.php">My Cloud Notes</a>
+                <li><a href="public.php">Public Cloud Notes</a></li>
+                <li><a href="welcome.php">Create a New Cloud Note</a></li>               
+            </ul> <!-- end #menu -->
+         </nav>
 	</head>
 <body>
 	<?php
@@ -50,16 +42,16 @@ if (isset($_SESSION['username'])) {
     
              
     echo "<div><table border='1' cellpadding='5'>";
-    echo "<tr><th>Time Stamp</th><th>Title</th><th>View</th>";
+    echo "<tr><th>Time Stamp</th><th>Title</th><th>View</th><th>Privacy</th>";
 
-    foreach ($myNotes as $key => $value){
+  foreach ($myNotes as $key => $value){
 
         echo '<tr><td>' . $value['date'] . '</td><td>' . $value['title'] . '</td><td>';
 
         echo
         '<form action="singleNote.php" method="POST">' .
         '<input type="hidden" name="view" value="' . $value['id'] . '">' .
-        '<input type="submit" value="View">' . '</form>';
+        '<input type="submit" value="View">' . '</form>' . "</td><td>" . $value['private'];
     }
         
     echo '</td></tr>';

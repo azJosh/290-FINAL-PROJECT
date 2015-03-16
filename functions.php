@@ -3,7 +3,7 @@
 
 
 function login($username, $password, $mysqli) {
-   if(!($stmt=$mysqli->prepare("SELECT id, username, password FROM members WHERE username=? AND password=?"))){
+   if(!($stmt=$mysqli->prepare("SELECT id, username, password, picture FROM members WHERE username=? AND password=?"))){
         echo "Prepared Statement ERROR. " . $mysqli->errno . " . " . $stmt->error;
    }
 
@@ -15,7 +15,7 @@ function login($username, $password, $mysqli) {
         echo "execute() ERROR. " . $stmt->errno . " . " . $mysqli->error;
    }
 
-   $stmt->bind_result($db_id, $db_username, $db_password);
+   $stmt->bind_result($db_id, $db_username, $db_password, $db_picture);
 
    $stmt->fetch();
 
@@ -24,6 +24,7 @@ function login($username, $password, $mysqli) {
    
    if(!(empty($db_username)) && $db_username == $username){
         $_SESSION['username'] = $db_username;
+        $_SESSION['pic'] = $db_picture;
         return true;
    } else{
         return false;
@@ -154,16 +155,6 @@ function getNotes($username){
   return $mysqli->query("SELECT * FROM notes WHERE username='$username';");
 }
 
-function getTitle($noteID){
-  $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
-  if($mysqli->connect_error){
-    echo "Failed to connect to Database: (".$mysqli->connect_errno.
-    ") ".$mysqli->connect_error;
-  }
-
-  return $mysqli->query("SELECT title FROM notes WHERE id='$noteID';");
-}
-
 function getSingleNote($noteID){
   $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
   if($mysqli->connect_error){
@@ -174,25 +165,14 @@ function getSingleNote($noteID){
   return $mysqli->query("SELECT * FROM notes WHERE id='$noteID';");
 }
 
-/*function getfile($noteID){
+function getPublicNotes($username){
   $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
   if($mysqli->connect_error){
     echo "Failed to connect to Database: (".$mysqli->connect_errno.
     ") ".$mysqli->connect_error;
   }
 
-  return $mysqli->query("SELECT file FROM notes WHERE id='$noteID';");
-}*/
-
-function getNoteDate($noteID){
-  $mysqli = new mysqli('oniddb.cws.oregonstate.edu', 'peeplesj-db', 'jhNqh46GyMrkQZuS', 'peeplesj-db');
-  if($mysqli->connect_error){
-    echo "Failed to connect to Database: (".$mysqli->connect_errno.
-    ") ".$mysqli->connect_error;
-  }
-
-  return $mysqli->query("SELECT date FROM notes WHERE id='$noteID';");
+  return $mysqli->query("SELECT * FROM notes WHERE private='public';");
 }
-
 
 ?>

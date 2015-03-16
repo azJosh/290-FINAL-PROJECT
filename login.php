@@ -18,9 +18,12 @@ session_start();
     <body>
         <h1>Cloud Note</h1>
         <?php
-        if (isset($_POST['logout'])) {
+        if (isset($_GET['logout'])) {
             session_destroy();
-            echo 'Thank you for using Cloud Note. You have successfully logged out.';
+            echo 'Thank you for using Cloud Note. You have successfully logged out. <br><br>';
+        }
+        if (isset($_GET['success'])) {
+            echo 'Thank you for creating your new Cloud Note account. Please sign in to get started. <br><br>';
         }
         ?> 
         <form action="LoginProcess.php" method="post" name="login_form">                      
@@ -33,6 +36,6 @@ session_start();
         </form>
  
     
-<p><a href="registration.php">Create a Cloud Note account</a>.</p>  
+<p><a href="registration2.php">Create a Cloud Note account</a>.</p>  
     </body>
 </html>
