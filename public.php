@@ -26,41 +26,64 @@ if (isset($_SESSION['username'])) {
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cloud Note: Public Notes</title>
+        <link rel="stylesheet" type="text/css" href="main.css" />
          <nav id="nav-wrap" class="cf">
-            <ul id="menu">
-                <li><a href="mynotes.php">My Cloud Notes</a>
-                <li><a href="public.php">Public Cloud Notes</a></li>
-                <li><a href="welcome.php">Create a New Cloud Note</a></li>             
-            </ul> <!-- end #menu -->
+            <div align="center">
+            <table width="40%" border="1" id="table1" bgcolor="#E8E8E8">
+                <tr>
+                    <td  align="center">
+                    <div >
+            
+                       <th>
+                            <img src="logoGray.jpg" alt="logoGray" height="80"></th><th>
+                            <a href="mynotes.php">My Cloud Notes</a><b></th><th>
+                            <a href="public.php">Public Cloud Notes</a></th><th>
+                            <a href="welcome.php">Create a New Cloud Note</a></th>           
+                    </div>
+                    </td>
+                </table>
+            </div>
          </nav>
 	</head>
 <body>
-	<?php
-	echo '<div>';
-    echo "<h2>Public Cloud Notes:</h2>";
-    echo '<p>Explore Cloud Notes from all of our users. <p>';
-    
-             
-    echo "<div><table border='1' cellpadding='5'>";
-    echo "<tr><th>Time Stamp</th><th>Title</th><th>View</th><th>Privacy</th>";
-
-    foreach ($myNotes as $key => $value){
-
-        echo '<tr><td>' . $value['date'] . '</td><td>' . $value['title'] . '</td><td>';
-
-        echo
-        '<form action="singleNote.php" method="POST">' .
-        '<input type="hidden" name="view" value="' . $value['id'] . '">' .
-        '<input type="submit" value="View">' . '</form>' . "</td><td>" . $value['private'];
-    }
-        
-    echo '</td></tr>';
-    echo '</table></div>';
-  
-
-    } else{
-        echo 'You need to be logged in to access this page. click <a href="login.php">here</a> to log in.';
-	}
+	<br><br>
+	 <div align="center">
+            <table width="90%" border="1" id="table1" bgcolor="#E8E8E8">
+                <tr>
+                    <td  align="center">
+                    <div > 
+                        <?php
+                        echo '<div>';
+                        echo "<h2>Public Cloud Notes:</h2>";
+                        echo '<p>Explore Cloud Notes from all of our users. <p>';
 
 
-?>
+                        echo "<div><table border='0' cellpadding='10'>";
+                        echo "<tr><th>Time Stamp</th><th>Title</th><th>View</th><th>Privacy</th>";
+
+                        foreach ($myNotes as $key => $value){
+
+                            echo '<tr><td>' . $value['date'] . '</td><td>' . $value['title'] . '</td><td>';
+
+                            echo
+                            '<form action="singleNote.php" method="POST">' .
+                            '<input type="hidden" name="view" value="' . $value['id'] . '">' .
+                            '<input type="submit" value="View">' . '</form>' . "</td><td>" . $value['private'];
+                        }
+
+                        echo '</td></tr>';
+                        echo '</table></div>';
+
+
+                        } else{
+                            echo 'You need to be logged in to access this page. click <a href="login.php">here</a> to log in.';
+                        }
+
+
+                        ?>
+                    </div>
+                    </td>
+                </table>
+            </div>
+    </body>
+</html>

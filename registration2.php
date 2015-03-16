@@ -12,6 +12,11 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Create an Account</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <style>body {
+            background-image: url("back1.jpg");
+                    }
+    </style>
     <script>
     function register(username, password, pic){
        //Blank user name
@@ -69,32 +74,41 @@ session_start();
    </script>
 </head>
 <body>
-    <h1>Create a Cloud Note account</h1>
-        
-    <div id="AccountBox">
-      <div id="statusBoxReg">
-      </div><br>
-      <form id="registerform" name="registerform">
-        Username:<br>
-        <input type="text" name="username1" maxlength="20">
-        <br>Password:<br>
-        <input type="password" name="password1" maxlength="20">
-        <br>Profile Picutre URL:<br>
-        <input type="text" name="pic" id="pic1" maxlength="250">
-        <br><br>
-        <div id="button">
-          <button type="button" onclick="register(username1.value, password1.value, pic.value)">Create Account</button>
-        </div>
-      </form>
-       Don't have a picture URL for your picture profile? Use one of ours:
-        <br><br><label><input type="radio" name="picRadio" value="beaver" onClick="selectBeaver()">Beaver</input></label><br>
-        <img src="beaver.jpg" alt="beaver" height="60"><br>
-        <label><input type="radio" name="picRadio" value="car" onClick="selectCar()">Car</input></label><br>
-        <img src="car.jpg" alt="beaver" height="60"><br>
-        <label><input type="radio" name="picRadio" value="skull" onClick="selectSkull()">Skull</input></label><br>
-        <img src="skull.jpg" alt="beaver" height="60"><br>       
-        <br><br><p>Return to the <a href="login.php">login page</a>.</p>
-    </div>
+    <div align="center">
+            <table width="40%" border="1" id="table1" bgcolor="#E8E8E8">
+                <tr>
+                    <td  align="center">
+                        <img src="logoGray.jpg" alt="logoGray" height="120"><br><br>
+                        <h1> Create an account </h1>
+
+                        <div id="AccountBox">
+                          <div id="statusBoxReg">
+                          </div><br>
+                          <form id="registerform" name="registerform">
+                            Username:<br>
+                            <input type="text" name="username1" maxlength="20">
+                            <br>Password:<br>
+                            <input type="password" name="password1" maxlength="20">
+                            <br>Profile Picutre URL:<br>
+                            <input type="text" name="pic" id="pic1" maxlength="250">
+                            <br><br>
+                            <div id="button">
+                              <button type="button" onclick="register(username1.value, password1.value, pic.value)">Create Account</button>
+                            </div>
+                          </form>
+                           Don't have a picture URL for your picture profile? Use one of ours:
+                            <br><br><label><input type="radio" name="picRadio" value="beaver" onClick="selectBeaver()">Beaver</input></label><br>
+                            <img src="beaver.jpg" alt="beaver" height="60"><br>
+                            <label><input type="radio" name="picRadio" value="car" onClick="selectCar()">Car</input></label><br>
+                            <img src="car.jpg" alt="beaver" height="60"><br>
+                            <label><input type="radio" name="picRadio" value="skull" onClick="selectSkull()">Skull</input></label><br>
+                            <img src="skull.jpg" alt="beaver" height="60"><br>       
+                            <br><br><p>Return to the <a href="login.php">login page</a>.</p>
+                        </div>
+
+                    </td>
+                </table>
+            </div>
        
     </body>
 </html>

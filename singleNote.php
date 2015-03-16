@@ -26,35 +26,54 @@ if (isset($_SESSION['username'])) {
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cloud Note: My Notes</title>
-	     <nav id="nav-wrap" class="cf">
-            <ul id="menu">
-                <li><a href="mynotes.php">My Cloud Notes</a>
-                <li><a href="public.php">Public Cloud Notes</a></li>
-                <li><a href="welcome.php">Create a New Cloud Note</a></li>               
-            </ul> <!-- end #menu -->
+        <link rel="stylesheet" type="text/css" href="main.css" />
+	      <nav id="nav-wrap" class="cf">
+            <div align="center">
+            <table width="40%" border="1" id="table1" bgcolor="#E8E8E8">
+                <tr>
+                    <td  align="center">
+                    <div >
+            
+                       <th>
+                            <img src="logoGray.jpg" alt="logoGray" height="80"></th><th>
+                            <a href="mynotes.php">My Cloud Notes</a><b></th><th>
+                            <a href="public.php">Public Cloud Notes</a></th><th>
+                            <a href="welcome.php">Create a New Cloud Note</a></th>           
+                    </div>
+                    </td>
+                </table>
+            </div>
          </nav>
 	</head>
 <body>
-	<?php
-	echo '<div>';
-    
-    $noteID = $_POST['view'];
-    
-   	$singleNote =  getSingleNote($noteID);
-   	
-   	foreach ($singleNote as $key => $value){
-   	echo "<h2>" . $value['title'] . "</h2><br>,<br>";
-   	echo $value['note'] . "<br><br>";
-   	//echo $value['file'] . "<br><br>";
-   	echo "Note Date: " . $value['date'] . "<br><br>";
-   }
-  
+    <br><br>
+	 <div align="center">
+            <table width="90%" border="1" id="table1" bgcolor="#E8E8E8">
+                <tr>
+                    <td  align="left">
+                    <div > 
+                        <?php
+                        echo '<div>';
 
-    } else{
-        echo 'You need to be logged in to access this page. click <a href="login.php">here</a> to log in.';
-	}
+                        $noteID = $_POST['view'];
+
+                        $singleNote =  getSingleNote($noteID);
+
+                        foreach ($singleNote as $key => $value){
+                        echo "<h2>" . $value['title'] . "</h2><br>,<br>";
+                        echo $value['note'] . "<br><br>";
+                        //echo $value['file'] . "<br><br>";
+                        echo "Note Date: " . $value['date'] . "<br><br>";
+                       }
 
 
-?>
+                        } else{
+                            echo 'You need to be logged in to access this page. click <a href="login.php">here</a> to log in.';
+                        }
+                        ?>
+                      </div>
+                    </td>
+                </table>
+        </div>
  </body>
 </html>
